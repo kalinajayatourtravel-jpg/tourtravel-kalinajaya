@@ -1,21 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
+import './Navbar.css';
 
 function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        <div className="navbar-brand">
+        <div className="navbar-logo">
           <h2>🌴 Kalinajaya Travel</h2>
         </div>
-        
-        <ul className="navbar-menu">
-          <li><a href="/">Home</a></li>
-          <li><a href="/tours">Tours</a></li>
-          <li><a href="/booking">Booking</a></li>
-          <li><a href="/about">About</a></li>
-          <li><a href="/contact">Contact</a></li>
-          <li><a href="/login" className="btn-login">Login</a></li>
-        </ul>
+
+        <div className={`navbar-menu ${isMenuOpen ? 'active' : ''}`}>
+          <a href="/" className="nav-link">Home</a>
+          <a href="/tours" className="nav-link">Tours</a>
+          <a href="/booking" className="nav-link">Bookings</a>
+          <a href="/about" className="nav-link">About</a>
+          <a href="/contact" className="nav-link">Contact</a>
+          <a href="/login" className="nav-link btn-login">Login</a>
+        </div>
+
+        <div className="hamburger" onClick={toggleMenu}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
     </nav>
   );
